@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LAND STACK — Integrated GIS Land Governance</title>
+  <meta name="description" content="SIH 2026 prototype for an integrated GIS-based Digital Public Infrastructure for Land Governance." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top"><span class="brand-mark">▦</span><span>LAND<span>STACK</span></span></a>
+    <nav>
+      <a href="#gis">GIS Dashboard</a><a href="#land360">Land 360</a><a href="#ai">AI Insights</a><a href="#architecture">Architecture</a>
+    </nav>
+    <button class="btn btn-primary" id="loginBtn">Demo Login</button>
+  </header>
+
+  <main id="top">
+    <section class="hero container">
+      <div class="hero-copy">
+        <div class="eyebrow">SIH 2026 · DIGITAL PUBLIC INFRASTRUCTURE</div>
+        <h1>One Parcel.<br><span>One ULPIN.</span><br>One Land View.</h1>
+        <p>Connect cadastral maps, RoR, registration, taxation, zoning and restrictions through a parcel-centric GIS Land Stack.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="#gis">Explore GIS Map →</a><a class="btn btn-ghost" href="#architecture">See Architecture</a></div>
+        <div class="mini-stats"><div><b>1</b><small>Common Parcel ID</small></div><div><b>360°</b><small>Land View</small></div><div><b>AI</b><small>Assisted Checks</small></div></div>
+      </div>
+      <div class="hero-visual"><div class="orbit o1"></div><div class="orbit o2"></div><div class="parcel-shape"><span>ULPIN</span><strong>TN-1234</strong></div><div class="floating-card fc1">✓ RoR linked</div><div class="floating-card fc2">⚠ Area mismatch</div><div class="floating-card fc3">◎ Registration linked</div></div>
+    </section>
+
+    <section class="strip"><div class="container strip-grid"><span>Fragmented records</span><b>→ LAND STACK →</b><span>Faster, transparent decisions</span></div></section>
+
+    <section id="gis" class="section container">
+      <div class="section-head"><div><div class="eyebrow">LIVE PROTOTYPE</div><h2>GIS Land Intelligence</h2></div><span class="status"><i></i> Synthetic demo data</span></div>
+      <div class="gis-layout">
+        <aside class="panel controls">
+          <label>State Adapter</label><select id="stateSelect"><option value="TN">Tamil Nadu</option><option value="BR">Bihar</option></select>
+          <label>Search Parcel</label><div class="search"><input id="parcelSearch" placeholder="Survey No. e.g. 124/2A" autocomplete="off"><button id="searchBtn">⌕</button></div><div id="suggestions" class="suggestions"></div>
+          <div class="layer-title">Map Layers</div>
+          <label class="check"><input type="checkbox" checked data-layer="parcel"> Cadastral parcels</label><label class="check"><input type="checkbox" checked data-layer="admin"> Administrative boundaries</label><label class="check"><input type="checkbox" checked data-layer="zoning"> Zoning</label><label class="check"><input type="checkbox" data-layer="restriction"> Restrictions</label>
+          <div class="api-box"><div><span class="dot ok"></span> Cadastral API <b>Connected</b></div><div><span class="dot ok"></span> RoR API <b>Connected</b></div><div><span class="dot warn"></span> Registration API <b>Mock</b></div></div>
+        </aside>
+        <div class="map-wrap"><div id="map"></div><div class="map-legend"><b>Parcel layers</b><span><i class="legend-parcel"></i> Cadastral</span><span><i class="legend-zone"></i> Zoning</span></div></div>
+      </div>
+    </section>
+
+    <section id="land360" class="section container">
+      <div class="section-head"><div><div class="eyebrow">PARCEL-CENTRIC VIEW</div><h2>Land 360°</h2></div><span class="pill" id="selectedPill">Survey 124/2A</span></div>
+      <div class="land-grid">
+        <div class="panel land-summary"><div class="summary-top"><div><span class="muted">ULPIN</span><h3 id="ulpin">TN-1234-5678-9012</h3></div><span class="verified">✓ Verified link</span></div><div class="facts"><div><small>Survey No.</small><b id="survey">124/2A</b></div><div><small>Area</small><b id="area">2.50 Acres</b></div><div><small>Land Use</small><b id="landUse">Residential</b></div><div><small>District</small><b id="district">Nagapattinam</b></div></div><div class="holder"><small>Record holder</small><b id="holder">Demo Land Holder</b><span>Last synced: 16 Sep 2026</span></div></div>
+        <div class="panel records"><div class="tabs"><button class="tab active" data-tab="ror">RoR</button><button class="tab" data-tab="reg">Registration</button><button class="tab" data-tab="tax">Property Tax</button><button class="tab" data-tab="zone">Zoning</button></div><div id="recordContent"></div><button class="btn btn-ai" id="aiCheck">✦ Run AI Land Check</button></div>
+      </div>
+    </section>
+
+    <section id="ai" class="section dark-section"><div class="container"><div class="section-head"><div><div class="eyebrow">AI-ASSISTED VERIFICATION</div><h2>Find conflicts before they become disputes.</h2></div></div><div class="ai-grid"><div class="ai-card alert"><span class="ai-icon">!</span><div><small>ANOMALY DETECTED · HIGH PRIORITY</small><h3>Area mismatch</h3><p>RoR records show <b>2.50 acres</b>, while a linked registration record shows <b>3.10 acres</b>.</p><div class="compare"><span>2.50 ac</span><b>0.60 ac difference</b><span>3.10 ac</span></div></div></div><div class="ai-flow"><div>01<br><b>AI detects</b><small>Cross-record inconsistency</small></div><div>02<br><b>Officer reviews</b><small>Evidence & source records</small></div><div>03<br><b>Human decision</b><small>Verify, resolve, audit</small></div></div></div><div class="future"><span>OCR</span><span>Land-use change</span><span>Duplicate detection</span><span>Restriction alerts</span></div></div></section>
+
+    <section id="architecture" class="section container"><div class="section-head"><div><div class="eyebrow">INTEROPERABILITY BY DESIGN</div><h2>State Adapter Architecture</h2></div></div><div class="arch"><div class="state-card"><span>STATE A</span><h3>Tamil Nadu</h3><p>Survey No. · Patta · Chitta · Adangal</p></div><div class="arrow">→</div><div class="core-card"><div class="core-icon">ULPIN</div><h3>Common Land Schema</h3><p>APIs · GIS · RBAC · Audit · AI</p></div><div class="arrow">→</div><div class="state-card"><span>STATE B</span><h3>Bihar</h3><p>Khesra · Khata · Jamabandi</p></div></div><div class="tech-grid"><div><b>Frontend</b><span>Next.js / React · MapLibre / Leaflet</span></div><div><b>Backend</b><span>FastAPI / Node.js · REST APIs</span></div><div><b>Data</b><span>PostgreSQL + PostGIS · Common schema</span></div><div><b>Security</b><span>RBAC · audit trail · API gateway</span></div></div></section>
+
+    <section class="impact section"><div class="container"><div class="eyebrow">WHY IT MATTERS</div><h2>From fragmented records to trusted land intelligence.</h2><div class="impact-grid"><div><b>01</b><h3>Interoperable</h3><p>Connect departments without replacing every existing system.</p></div><div><b>02</b><h3>Transparent</h3><p>Give citizens and officers a consistent parcel-centric view.</p></div><div><b>03</b><h3>Scalable</h3><p>State Adapters make expansion configuration-driven.</p></div></div></div></section>
+  </main>
+  <footer><div class="container footer-inner"><b>LAND STACK</b><span>SIH 2026 Prototype · Synthetic data for demonstration</span><span>Citizen · Officer · Admin</span></div></footer>
+  <div id="modal" class="modal"><div class="modal-box"><button class="close" id="closeModal">×</button><div class="eyebrow">AI LAND CHECK</div><h2>Verification workflow</h2><p>AI flags inconsistencies; it does not make the final land-record decision.</p><div class="modal-alert">⚠ <b>0.60 acre mismatch</b><br><small>RoR: 2.50 acres · Registration: 3.10 acres</small></div><button class="btn btn-primary" id="verifyBtn">Send to Officer Review</button></div></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script><script src="app.js"></script>
+</body>
+</html>
